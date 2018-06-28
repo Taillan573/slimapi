@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS api DEFAULT CHARSET=latin1 COLLATE latin1_swedish_ci; 
+CREATE TABLE api.pessoa ( 
+id int(6) UNSIGNED NOT NULL, 
+nome varchar(30) NOT NULL AUTO_INCREMENT, 
+email varchar(50) ,
+ senha varchar(20) , 
+ id_tipo_usuario int(11) 
+ ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE api.pessoa ADD PRIMARY KEY (id); 
+CREATE TABLE api.tipo_usuario ( 
+id int(11) NOT NULL, 
+descricao varchar(50) NOT NULL 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
+ALTER TABLE api.tipo_usuario ADD PRIMARY KEY (id);
+}
+
