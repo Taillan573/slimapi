@@ -103,22 +103,19 @@ namespace controllers{
 			$sets = [];
 			foreach ($dados as $key => $VALUES) {
 				$sets[] = $key." = :".$key;
+				$set=7;
+				$app->render('default.php',["data"=>print_r([$id])],200); 
 			}
  
-			$sth = $this->PDO->prepare("UPDATE pessoa SET nome= tailan WHERE id = :id");
+			/*$sth = $this->PDO->prepare("UPDATE pessoa SET nome= tailan WHERE id = :id");
 			
 			$sth ->bindValue(':id',$id);
 			foreach ($dados as $key => $value) {
 				$sth ->bindValue(':'.$key,$value);
-			}
+			}*/
 			
 			//Retorna status da edição
-			$app->render('default.php',["data"=>['status'=>$sth->execute()==1]],200); 
-			if ($sth->rowCount()==1) {
-				return true;
-			}else{
-				return false;
-			}
+			//$app->render('default.php',["data"=>['status'=>$sth->execute()==1]],200); 
 		}
 		
 
@@ -127,10 +124,11 @@ namespace controllers{
 		param $id
 		Excluindo pessoa
 		*/
-		public function excluir($id){
+		public function excluir($id,$tabela){
 			global $app;
-			$sth = $this->PDO->prepare("DELETE FROM pessoa WHERE id = :id");
+			$sth = $this->PDO->prepare("DELETE FROM $tabela WHERE id = :id");
 			$sth ->bindValue(':id',$id);
+			$sth ->bindValue(':tabela',$tabela);
 			$app->render('default.php',["data"=>['status'=>$sth->execute()==1]],200); 
 		}
 	}

@@ -27,14 +27,14 @@ $app->post('/pessoas/', function() use ($app){
 	
 });
 
-//edita pessoa
+//rota update pessoa
 $app->put('/pessoas/:id', function($id) use ($app){
 	(new \controllers\Pessoa($app))->editar($id);
 });
 
-//apaga pessoa
-$app->delete('/pessoas/:id', function($id) use ($app){
-	(new \controllers\Pessoa($app))->excluir($id);
+//rota delete passando id e tabela
+$app->delete('/pessoas/:id/:tabela', function($id,$tabela) use ($app){
+	(new \controllers\Pessoa($app))->excluir($id,$tabela);
 });
 
 //Rodando aplicação
