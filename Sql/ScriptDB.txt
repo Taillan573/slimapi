@@ -6,11 +6,12 @@ email varchar(50) ,
  senha varchar(20) , 
  id_tipo_usuario int(11) 
  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-ALTER TABLE api.pessoa ADD PRIMARY KEY (id); 
 CREATE TABLE api.tipo_usuario ( 
 id int(11) NOT NULL, 
 descricao varchar(50) NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
+ALTER TABLE api.pessoa ADD PRIMARY KEY (id); 
+ALTER TALBE API.PESSOA ADD CONSTRAINT FK_TIPO_USUARIO FOREIGN KEY(ID_TIPO_USUARIO) REFERENCES API.TIPO_USUARIO(ID);
 ALTER TABLE api.tipo_usuario ADD PRIMARY KEY (id);
-}
+
 
