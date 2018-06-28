@@ -28,8 +28,8 @@ $app->post('/pessoas/', function() use ($app){
 });
 
 //rota update pessoa
-$app->put('/pessoas/:id', function($id) use ($app){
-	(new \controllers\Pessoa($app))->editar($id);
+$app->put('/pessoas/:id/:tabela', function($id,$tabela) use ($app){
+	(new \controllers\Pessoa($app))->editar($id,$tabela);
 });
 
 //rota delete passando id e tabela

@@ -91,39 +91,26 @@ namespace controllers{
 			}
 		}
 
-		/*
-		editar
-		param $id
-		Editando pessoa
-		*/
-		public function editar($id){
+		public function editar($$id,$tabela){
 			global $app;
 			$dados = json_decode($app->request->getBody(), true);
 			$dados = (sizeof($dados)==0)? $_POST : $dados;
 			$sets = [];
 			foreach ($dados as $key => $VALUES) {
 				$sets[] = $key." = :".$key;
-				$set=7;
 				$app->render('default.php',["data"=>print_r([$id])],200); 
 			}
  
-			/*$sth = $this->PDO->prepare("UPDATE pessoa SET nome= tailan WHERE id = :id");
-			
+			$sth = $this->PDO->prepare("UPDATE :tabela SET nome= tailan WHERE id = :id");
 			$sth ->bindValue(':id',$id);
+			$sth ->bindValue(':tabela',$tabela);
 			foreach ($dados as $key => $value) {
 				$sth ->bindValue(':'.$key,$value);
-			}*/
+			}
 			
-			//Retorna status da edição
-			//$app->render('default.php',["data"=>['status'=>$sth->execute()==1]],200); 
+			$app->render('default.php',["data"=>['status'=>$sth->execute()==1]],200); 
 		}
-		
-
-		/*
-		excluir
-		param $id
-		Excluindo pessoa
-		*/
+		//cadastrar pessoa ou tipo pessoa
 		public function excluir($id,$tabela){
 			global $app;
 			$sth = $this->PDO->prepare("DELETE FROM $tabela WHERE id = :id");
